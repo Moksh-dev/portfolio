@@ -1,0 +1,46 @@
+{
+  "sourceDirectory": "moksh photos",
+  "featured": [
+    "moksh goel to be pfp.jpeg",
+    "picture 12 copy.jpeg",
+    "WhatsApp Image 2026-05-15 at 12.42.57 PM.jpeg",
+    "picture 10.jpeg",
+    "nfl 1.jpeg",
+    "lklk.jpg",
+    "WhatsApp Image 2026-05-15 at 12.42.52 PM (2).jpeg",
+    "s.jpeg",
+    "picture 7.jpeg"
+  ],
+  "exclude": {
+    "guest-lecture9sep-mosksh.png": "Alternate crop of the included lecture photograph",
+    "huda 4.jpeg": "Promotional results graphic",
+    "km.jpg": "Sideways version of the included landscape photograph",
+    "nfl11.jpeg": "Near-duplicate of nfl10",
+    "nfl12.jpeg": "Promotional graphic; the photographic crop is included",
+    "nfl5 cropped.jpeg": "The uncropped photograph is included",
+    "picture 12.jpeg": "Sideways version of the included landscape photograph",
+    "picture 6.jpeg": "Sideways version of the included landscape photograph",
+    "picture 8.jpeg": "Alternate crop of the featured portrait",
+    "project-asha logo.png": "Website logo",
+    "WhatsApp Image 2026-05-15 at 12.42.46 PM (1).jpeg": "Social interface screenshot",
+    "WhatsApp Image 2026-05-15 at 12.42.46 PM (2).jpeg": "Social interface screenshot",
+    "WhatsApp Image 2026-05-15 at 12.42.47 PM (3).jpeg": "Repeated portrait",
+    "WhatsApp Image 2026-05-15 at 12.42.55 PM (1).jpeg": "Near-duplicate of the included architectural portrait",
+    "WhatsApp Image 2026-05-15 at 12.42.55 PM (2).jpeg": "Near-duplicate of the included outdoor photograph",
+    "WhatsApp Image 2026-05-15 at 12.42.56 PM (2).jpeg": "Near-duplicate of the included portrait",
+    "WhatsApp Image 2026-05-15 at 12.42.56 PM.jpeg": "Photograph of a presentation slide",
+    "WhatsApp Image 2026-06-16 at 10.23.06 AM.jpeg": "Sideways version of the included landscape photograph"
+  },
+  "rotate": { "picture 3.jpeg": 270 },
+  "alt": {
+    "moksh goel to be pfp.jpeg": "Portrait in a dark suit against a softly lit wall",
+    "picture 12 copy.jpeg": "Three people seated together indoors",
+    "WhatsApp Image 2026-05-15 at 12.42.57 PM.jpeg": "A person working at a desk with two screens",
+    "picture 10.jpeg": "Three people standing together outdoors",
+    "nfl 1.jpeg": "A group standing on a stage",
+    "lklk.jpg": "Two people taking a selfie in a car",
+    "WhatsApp Image 2026-05-15 at 12.42.52 PM (2).jpeg": "A person standing outdoors beside a lectern",
+    "s.jpeg": "A full-length mirror portrait",
+    "picture 7.jpeg": "Portrait in a dark suit beside a warmly lit wall"
+  }
+}

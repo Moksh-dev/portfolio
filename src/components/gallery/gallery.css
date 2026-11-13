@@ -1,0 +1,97 @@
+.photo-gallery {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  padding: clamp(85px, 12svh, 150px) 0 65px;
+  color: #e8e5df;
+  background: linear-gradient(180deg, #080e20 0%, #101720 26%, #171c20 63%, #1c2021 100%);
+  --photo-arrival: 0;
+}
+.gallery-star-traces { position: absolute; z-index: -1; top: 0; width: 100%; height: 55%; pointer-events: none; }
+.gallery-star-traces i { position: absolute; left: var(--star-x); top: var(--star-y); width: 2px; height: 2px; border-radius: 50%; background: #c2cadc; box-shadow: 0 0 8px #9cb5e14d; opacity: calc(.35 - var(--photo-arrival) * .28); transform: translate(calc(var(--drift-x) * var(--photo-arrival)), calc(var(--drift-y) * var(--photo-arrival))); }
+.gallery-star-traces i:nth-child(3n) { width: 1px; height: 1px; }
+.gallery-heading { position: relative; z-index: 2; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+.gallery-heading .eyebrow { color: #a7acb6; font-size: 10px; letter-spacing: .035em; }
+.gallery-heading h2 { margin-top: 17px; font-family: var(--font-editorial), Georgia, serif; font-size: clamp(64px, 7.2vw, 112px); line-height: 1; letter-spacing: -.045em; }
+.gallery-heading > p { padding-bottom: 9px; font-size: 11px; color: #a6a8aa; }
+.photo-orbit { position: relative; height: clamp(460px, 64svh, 700px); margin-top: 26px; perspective: 1150px; perspective-origin: 50% 46%; touch-action: pan-y pinch-zoom; cursor: grab; user-select: none; -webkit-user-select: none; }
+.photo-orbit[data-dragging] { cursor: grabbing; }
+.gallery-atmosphere { position: absolute; inset: 5% 5% 0; background: radial-gradient(ellipse at 50% 60%, #c0a77a0a, transparent 58%); pointer-events: none; }
+.photo-space { position: absolute; inset: 0; transform-style: preserve-3d; }
+.orbit-photo {
+  position: absolute;
+  left: 50%; top: 47%;
+  width: min(370px, calc(350px * var(--photo-ratio)));
+  aspect-ratio: var(--photo-ratio);
+  padding: 0;
+  border-radius: 2px;
+  background: #1a2026;
+  box-shadow: 0 24px 50px -18px #0009, 0 2px 7px #0003;
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  cursor: inherit;
+  touch-action: pan-y pinch-zoom;
+  -webkit-user-drag: none;
+}
+.orbit-photo img { display: block; width: 100%; height: auto; aspect-ratio: var(--photo-ratio); border-radius: inherit; pointer-events: none; }
+.orbit-photo:focus-visible { outline: 2px solid #d2b786; outline-offset: 9px; }
+.photo-open-mark { position: absolute; right: 13px; bottom: 10px; color: white; font-size: 20px; line-height: 1; text-shadow: 0 1px 6px #000b; opacity: 0; transform: translate(-3px, 3px); transition: opacity 200ms, transform 200ms; }
+.orbit-photo[data-active]:hover .photo-open-mark, .orbit-photo:focus-visible .photo-open-mark { opacity: .85; transform: none; }
+.photo-orbit[data-selecting] .orbit-photo:not([data-active]) img { opacity: .32; transition: opacity 500ms; }
+.gallery-controls { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 25px; }
+.gallery-controls > p { display: flex; align-items: center; gap: 10px; font-size: 10px; color: #a4a8ad; }
+.gallery-navigation { display: flex; align-items: center; gap: 12px; }
+.gallery-icon-button { width: 44px; height: 44px; display: inline-flex; justify-content: center; align-items: center; color: #d5d5d3; border: 1px solid #b2b5bd30; border-radius: 50%; transition: color 180ms, border-color 180ms, background 180ms; }
+.gallery-icon-button:hover { border-color: #d3c3a672; color: #fff; background: #ffffff06; }
+.gallery-counter { min-width: 73px; font-size: 10px; font-variant-numeric: tabular-nums; color: #91989f; text-align: center; }
+.gallery-counter > span { color: #e7e3db; }
+.gallery-counter i, .photo-viewer-bottom i { margin: 0 12px; color: #6f777e; font-style: normal; }
+.gallery-motion { justify-self: end; display: flex; align-items: center; gap: 8px; min-height: 44px; color: #a4a8ad; font-size: 10px; }
+.gallery-motion:hover { color: #e8e5df; }
+.gallery-motion:disabled { opacity: .65; }
+.photo-gallery[data-still] .gallery-star-traces i { transform: none; }
+.photo-unavailable { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 20px; font-size: 12px; color: #e8e5df; background: #20262b; }
+
+.photo-viewer { position: fixed; inset: 0; width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; padding: 80px 28px; border: 0; color: #e8e5df; background: #0e1317f5; overflow: hidden; overscroll-behavior: contain; }
+.photo-viewer[open] { display: flex; align-items: center; justify-content: center; }
+.photo-viewer::backdrop { background: #0e1317b3; animation: viewer-backdrop 500ms both; }
+.photo-viewer-top { position: absolute; top: 20px; left: 32px; right: 24px; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-editorial), Georgia, serif; font-size: 24px; }
+.photo-viewer-top .gallery-icon-button { border-color: transparent; }
+.photo-viewer-image { position: relative; width: min(calc(100vw - 90px), calc((100svh - 180px) * var(--viewer-ratio)), 1600px); aspect-ratio: var(--viewer-ratio); transform-origin: top left; touch-action: pan-y pinch-zoom; }
+.photo-viewer-image img { display: block; width: 100%; height: 100%; object-fit: contain; user-select: none; -webkit-user-drag: none; }
+.photo-viewer-bottom { position: absolute; bottom: 20px; display: flex; align-items: center; gap: 23px; font-size: 11px; font-variant-numeric: tabular-nums; }
+.photo-viewer[data-closing] { background: transparent; transition: background 400ms; }
+.photo-viewer[data-closing]::backdrop { opacity: 0; transition: opacity 400ms; }
+.photo-viewer[data-closing] .photo-viewer-top, .photo-viewer[data-closing] .photo-viewer-bottom { opacity: 0; transition: opacity 150ms; }
+@keyframes viewer-backdrop { from { background: transparent; } to { background: #0e1317b3; } }
+
+@media (min-width: 1800px) {
+  .orbit-photo { width: min(420px, calc(390px * var(--photo-ratio))); }
+  .photo-orbit { perspective: 1350px; }
+}
+@media (max-width: 1000px) { .gallery-help-extra { display: none; } }
+@media (max-width: 759px) {
+  .photo-gallery { padding: 68px 0 38px; }
+  .gallery-heading { display: block; }
+  .gallery-heading .eyebrow { font-size: 9px; }
+  .gallery-heading h2 { font-size: 65px; margin-top: 13px; }
+  .gallery-heading > p { margin-top: 16px; font-size: 10px; padding: 0; }
+  .photo-orbit { height: clamp(365px, 54svh, 520px); margin-top: 16px; perspective: 800px; perspective-origin: 50% 46%; }
+  .orbit-photo { width: min(290px, 76vw, calc(290px * var(--photo-ratio))); top: 49%; box-shadow: 0 18px 40px -16px #000a; }
+  .gallery-controls { grid-template-columns: 1fr auto; column-gap: 10px; row-gap: 16px; }
+  .gallery-navigation { grid-row: 1; grid-column: 1 / -1; justify-content: center; gap: 18px; }
+  .gallery-controls > p { grid-column: 1; font-size: 9px; gap: 7px; }
+  .gallery-motion { grid-column: 2; font-size: 9px; }
+  .gallery-counter { min-width: 68px; }
+  .photo-viewer { padding: 76px 16px; }
+  .photo-viewer-top { left: 20px; right: 12px; top: 12px; }
+  .photo-viewer-image { width: min(calc(100vw - 32px), calc((100svh - 160px) * var(--viewer-ratio))); }
+  .photo-viewer-bottom { bottom: 18px; }
+}
+@media (max-height: 580px) and (min-width: 760px) {
+  .photo-orbit { height: 370px; }
+  .orbit-photo { width: min(300px, calc(260px * var(--photo-ratio))); }
+}
+@media (prefers-reduced-motion: reduce) { .gallery-star-traces { display: none; } }
